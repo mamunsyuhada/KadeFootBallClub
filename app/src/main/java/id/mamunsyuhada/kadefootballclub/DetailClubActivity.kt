@@ -11,49 +11,50 @@ import org.jetbrains.anko.*
 class DetailClubActivity : AppCompatActivity() {
 
     companion object {
-        const  val JUDUL = "judul"
-        const  val GAMBAR = "gambar"
-        const  val DESKRIPSI = "deskripsi"
+        const  val NAMAKLUB = "namaKlub"
+        const  val LOGOKLUB = "logoKlub"
+        const  val DESKRIPSIKLUB = "deskripsiKlub"
     }
 
-    private var judul:String = ""
-    private var logo: Int = 0
-    private var deskripsi: String =""
+    private var namaKlub:String = ""
+    private var logoKlub: Int = 0
+    private var deskripsiKlub: String =""
 
-    lateinit var  judulTextView: TextView
-    lateinit var logoImageView: ImageView
-    lateinit var deskripsiTextView: TextView
+    lateinit var tvNamaKlub: TextView
+    lateinit var ivLogoKlub: ImageView
+    lateinit var tvDeskripsiKlub: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        scrollView {
+            verticalLayout {
+                padding = dip(14)
 
-        verticalLayout {
-            padding = dip(14)
+                ivLogoKlub = imageView()
+                        .lparams(width = dip(200), height = wrapContent){
+                            gravity = Gravity.CENTER
+                        }
+                tvNamaKlub = textView()
+                        .lparams(width = matchParent, height = wrapContent){
+                            gravity = Gravity.CENTER
+                            topMargin = dip(10)
+                        }
 
-            logoImageView = imageView().
-                    lparams(width = dip(100), height = wrapContent){
-                        gravity = Gravity.CENTER
-                    }
-            judulTextView = textView().
-                    lparams(width = wrapContent){
-                        gravity = Gravity.CENTER
-                        topMargin = dip(10)
-                    }
-            deskripsiTextView =textView().
-                    lparams(width= wrapContent){
-                        topMargin = dip(20)
-                        leftMargin = dip(20)
-                        rightMargin = dip(20)
-                    }
-
+                tvDeskripsiKlub = textView()
+                        .lparams(width = matchParent, height = wrapContent){
+                            margin = dip(20)
+                        }.lparams(width = matchParent, height = wrapContent)
+            }.lparams(width = matchParent, height = wrapContent)
         }
-        logo = intent.getIntExtra(GAMBAR, 0)
-        judul = intent.getStringExtra(JUDUL)
-        deskripsi = intent.getStringExtra(DESKRIPSI)
 
-        Glide.with(logoImageView).load(logo).into(logoImageView)
-        judulTextView.text= judul
-        deskripsiTextView.text = deskripsi
+        namaKlub = intent.getStringExtra(NAMAKLUB)
+        logoKlub = intent.getIntExtra(LOGOKLUB, 0)
+        deskripsiKlub = intent.getStringExtra(DESKRIPSIKLUB)
+
+        tvNamaKlub.text= namaKlub
+        tvNamaKlub.textSize = 40f
+        Glide.with(ivLogoKlub).load(logoKlub).into(ivLogoKlub)
+        tvDeskripsiKlub.text = deskripsiKlub
 
     }
 }

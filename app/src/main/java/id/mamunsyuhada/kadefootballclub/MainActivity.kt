@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.Toast
+import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,8 +25,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun klubDiklik(it: Item) {
-        val toast = Toast.makeText(applicationContext, it.name, Toast.LENGTH_SHORT)
+        val toast = Toast.makeText(applicationContext, it.namaKlub, Toast.LENGTH_SHORT)
         toast.show()
+
+        startActivity<DetailClubActivity>(
+                DetailClubActivity.NAMAKLUB to it.namaKlub,
+                DetailClubActivity.LOGOKLUB to it.logoKlub,
+                DetailClubActivity.DESKRIPSIKLUB to it.deskripsiKlub)
     }
 
     private fun inisialisasiKomponen() {

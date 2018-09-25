@@ -14,8 +14,8 @@ class RecyclerViewAdapter(private val context: Context, private val items: List<
 
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun bindItem(items: Item, listener: (Item) -> Unit) {
-            namaClub.text = items.name
-            Glide.with(containerView).load(items.image).into(imgClub)
+            namaClub.text = items.namaKlub
+            Glide.with(containerView).load(items.logoKlub).into(imgClub)
             containerView.setOnClickListener { listener(items) }
         }
     }
@@ -28,5 +28,4 @@ class RecyclerViewAdapter(private val context: Context, private val items: List<
         ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_list_tim, parent, false))
 
     override fun getItemCount(): Int = items.size
-
 }
